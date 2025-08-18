@@ -1,0 +1,10 @@
+# Ignorar archivos generados automáticamente por Python y Django
+__pycache__/
+*.pyc
+*.sqlite3
+
+# Ignorar entorno virtual
+env/
+
+# Ignorar archivos temporales y de editor de texto
+.DS_Store
