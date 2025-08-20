@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Sneaker, Carrito, ItemCarrito # <-- Asegúrate de que los modelos estén aquí
+from .models import Sneaker, Carrito, ItemCarrito
 
 def index(request):
     all_sneakers = Sneaker.objects.all()
@@ -47,4 +47,10 @@ def ver_carrito(request):
     # Obtiene todos los ítems de ese carrito
     items_carrito = ItemCarrito.objects.filter(carrito=carrito)
     
-    return render(request, 'custom_shoes/carrito.html', {'items_carrito': items_carrito})
+    # Nuevo: Calcula el total del carrito
+    total_carrito = sum(item.get_total() for item in items_carrito)
+    
+    return render(request, 'custom_shoes/carrito.html', {
+        'items_carrito': items_carrito,
+        'total_carrito': total_carrito  # Pasa la nueva variable a la plantilla
+    })

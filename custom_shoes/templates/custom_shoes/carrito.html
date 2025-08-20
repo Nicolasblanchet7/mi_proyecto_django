@@ -26,6 +26,12 @@
         {% else %}
             <p class="carrito-vacio">Tu carrito está vacío.</p>
         {% endif %}
+
+        {% if items_carrito %}
+            <div class="carrito-total">
+                <p>Total: ${{ total_carrito }}</p>
+            </div>
+        {% endif %}
     </main>
 
     <footer>
