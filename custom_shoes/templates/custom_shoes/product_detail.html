@@ -13,10 +13,14 @@
 
     <main>
         <div class="product-detail">
+            {% if sneaker.image %}
+                <img src="{{ sneaker.image.url }}" alt="{{ sneaker.name }}" width="400" height="auto">
+            {% endif %}
+
             <p>{{ sneaker.description }}</p>
-            
+
             <h3>Selecciona tus opciones:</h3>
-            <form action="#" method="post">
+            <form action="{% url 'agregar_al_carrito' sneaker_name=sneaker.name %}" method="post"> {% csrf_token %}
                 <label for="color">Color:</label>
                 <select id="color" name="color">
                     <option value="negro">Negro</option>
@@ -31,11 +35,17 @@
                     <option value="38">38</option>
                     <option value="39">39</option>
                     <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                    <option value="45">45</option>
+                    <option value="46">46</option>
                 </select>
 
                 <br><br>
 
-                <button type="submit" class="btn">Agregar al carrito</button>
+                <button type="submit" class="btn">Confirmar Selección</button>
             </form>
         </div>
     </main>

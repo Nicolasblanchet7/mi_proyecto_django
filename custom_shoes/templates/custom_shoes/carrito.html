@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Carrito</title>
+    <link rel="stylesheet" href="{% static 'custom_shoes/css/estilos.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Mi Carrito de Compras</h1>
+    </header>
+
+    <main class="carrito-container">
+        {% if items_carrito %}
+            <ul class="carrito-lista">
+                {% for item in items_carrito %}
+                    <li class="carrito-item">
+                        <h2>{{ item.sneaker.name }}</h2>
+                        <p>Color: {{ item.color }}</p>
+                        <p>Talla: {{ item.talla }}</p>
+                        <p>Cantidad: {{ item.cantidad }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="carrito-vacio">Tu carrito está vacío.</p>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p><a href="/">Volver al catálogo</a></p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmación</title>
+    <link rel="stylesheet" href="{% static 'custom_shoes/css/estilos.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Selección Confirmada</h1>
+    </header>
+
+    <main class="confirmacion">
+        <p>{{ mensaje }}</p>
+        <a href="/">Volver al catálogo</a>
+    </main>
+
+    <footer>
+        <p>Todos los derechos reservados. MiProyectoDjango 2025</p>
+    </footer>
+
+</body>
+</html>

@@ -3,13 +3,14 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Catálogo de Zapatillas</title>
+    <title>CUSTOM SHOES</title>
     <link rel="stylesheet" href="{% static 'custom_shoes/css/estilos.css' %}">
 </head>
 <body>
     <header>
-        <h1>Catálogo de Zapatillas Personalizadas</h1>
-    </header>
+        <img src="{% static 'custom_shoes/img/logo.png' %}" alt="Logo de la tienda" class="logo">
+        <h1>CUSTOM SHOES</h1>
+        <a href="{% url 'ver_carrito' %}" class="btn">Ver Carrito</a>  </header>
 
     <main class="catalogo">
         {% for sneaker in sneakers %}
