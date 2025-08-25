@@ -10,7 +10,19 @@
     <header>
         <img src="{% static 'custom_shoes/img/logo.png' %}" alt="Logo de la tienda" class="logo">
         <h1>CUSTOM SHOES</h1>
-        <a href="{% url 'ver_carrito' %}" class="btn">Ver Carrito</a>  </header>
+        
+        <div class="auth-links">
+            {% if user.is_authenticated %}
+                <span>Hola, {{ user.username }}!</span>
+                <a href="{% url 'logout' %}" class="btn">Cerrar Sesión</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn">Iniciar Sesión</a>
+                <a href="{% url 'register' %}" class="btn">Registrarse</a>
+            {% endif %}
+        </div>
+        
+        <a href="{% url 'ver_carrito' %}" class="btn">Ver Carrito</a>
+    </header>
 
     <main class="catalogo">
         {% for sneaker in sneakers %}
@@ -20,7 +32,7 @@
                 <img src="{{ sneaker.image.url }}" alt="{{ sneaker.name }}" width="300" height="auto">
             {% endif %}
             <p>{{ sneaker.description }}</p>
-            <a href="{% url 'product_detail' sneaker_name=sneaker.name %}" class="btn">Personalizar</a>
+            <a href="{% url 'product_detail' pk=sneaker.id %}" class="btn">Personalizar</a>
         </div>
         {% endfor %}
     </main>
