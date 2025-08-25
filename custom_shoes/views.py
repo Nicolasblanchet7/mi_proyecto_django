@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.mail import send_mail
 from django.conf import settings
 from .models import Sneaker, Carrito, ItemCarrito, Comment # Asegúrate de importar Comment
-from .forms import CommentForm, ContactForm # Importa los nuevos formularios
+from .forms import CommentForm, ContactForm, SneakerForm # ¡Asegúrate de importar SneakerForm!
 
 # 1. Función para el registro de nuevos usuarios (Perfil Miembro)
 def register(request):
@@ -89,10 +89,20 @@ def ver_carrito(request):
         'total_carrito': total_carrito
     })
 
-# 3. Lógica para el perfil Colaborador (opcional, pero cumple el requisito)
-@user_passes_test(lambda user: user.is_staff)
+# 3. Vista protegida para el Perfil Colaborador (maneja el formulario de agregar producto)
+def es_colaborador(user):
+    return user.is_staff
+
+@user_passes_test(es_colaborador)
 def dashboard_colaborador(request):
-    return render(request, 'custom_shoes/dashboard_colaborador.html')
+    if request.method == 'POST':
+        form = SneakerForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('index') 
+    else:
+        form = SneakerForm()
+    return render(request, 'custom_shoes/dashboard_colaborador.html', {'form': form})
 
 # 4. NUEVA VISTA PARA EL FORMULARIO DE CONTACTO
 def contact(request):

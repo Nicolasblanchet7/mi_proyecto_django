@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Colaborador</title>
+    <link rel="stylesheet" href="{% static 'custom_shoes/css/estilos.css' %}">
+</head>
+<body>
+    <header>
+        <img src="{% static 'custom_shoes/img/logo.png' %}" alt="Logo de la tienda" class="logo">
+        <h1>Dashboard del Colaborador</h1>
+    </header>
+
+    <main class="dashboard-container">
+        <h2>Agregar Nueva Zapatilla</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Agregar Zapatilla</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>Todos los derechos reservados. MiProyectoDjango 2025</p>
+        <p><a href="/">Volver al catálogo</a></p>
+    </footer>
+</body>
+</html>
